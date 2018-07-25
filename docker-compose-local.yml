@@ -1,0 +1,44 @@
+version: '3'
+
+services:
+  db:
+    image: sintra_docker/mysql
+    build:
+      context: ./mysql
+    volumes:
+        - ./mysql/data:/var/lib/mysql:cached
+    environment:
+      TZ: America/Sao_Paulo"
+      MS_UID: ${UID}
+      MS_GID: ${UID}
+      MYSQL_ROOT_PASSWORD: secret
+      MYSQL_PASSWORD: secret
+      MYSQL_DATABASE: sintra_docker_${RACK_ENV}
+      MYSQL_USER: dbuser
+    ports:
+      - "3306:3306"
+    restart: always
+
+  ruby:
+    image: sintra_docker/ruby
+    environment:
+      MS_UID: ${UID}
+      MS_GID: ${UID}
+      RACK_ENV: ${RACK_ENV}
+      APP_HOME: /web
+      MYSQL_DATABASE: sintra_docker_${RACK_ENV}
+      MYSQL_USER: dbuser
+      MYSQL_PASSWORD: secret
+    build: 
+      context: ./ruby
+    entrypoint: /usr/src/ruby-entrypoint.sh
+    volumes:
+      - ./web:/web:cached
+      - ./ruby/bundle_cache:/bundle:cached
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+    links:
+      - db
+    restart: always

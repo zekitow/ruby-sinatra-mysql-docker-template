@@ -1,0 +1,21 @@
+default: &default
+  adapter: mysql2
+  encoding: utf8
+  pool: 5
+  reconnect: true
+  port: 3306
+  username: root
+  password: secret
+  host: db
+
+development:
+  <<: *default
+  database: sintra_docker_development
+
+test:
+  <<: *default
+  database: sintra_docker_test
+
+production:
+  <<: *default
+  database: sintra_docker_production
