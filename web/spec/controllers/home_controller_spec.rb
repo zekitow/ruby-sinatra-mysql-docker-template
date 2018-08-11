@@ -4,11 +4,11 @@ describe HomeController do
 
   context 'when I am authorized' do
     context 'GET /' do
-      subject { get '/', {}, auth_header }
+      subject { get '/', {} }
 
       context 'when I access the root page' do
-        it { expect(subject.status).to eql(200) }
-        it { expect(subject.body).to include('403 Forbidden') }
+        it { expect(subject.status).to eql(401) }
+        it { expect(subject.body).to include('401') }
       end
     end
   end

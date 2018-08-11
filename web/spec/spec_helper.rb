@@ -18,11 +18,6 @@ module RSpecMixin
   include Rack::Test::Methods
 end
 
-VCR.configure do |c|
-  c.cassette_library_dir = 'fixtures/vcr_cassettes'
-  c.hook_into :webmock # or :fakeweb
-end
-
 RSpec.configure do | config |
   config.include RSpecMixin
   config.include(Shoulda::Matchers::ActiveModel, type: :model)

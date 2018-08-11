@@ -6,4 +6,4 @@ export RACK_ENV=test
 docker-compose -f docker-compose-local.yml up
 
 # stops docker
-docker-compose down
+docker-compose -f docker-compose-local.yml down

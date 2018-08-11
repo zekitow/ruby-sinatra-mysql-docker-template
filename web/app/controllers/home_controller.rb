@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
 
   get '/' do
-    erb :index
+    raise UnauthorizedError.new('401')
   end
 end
