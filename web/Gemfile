@@ -4,14 +4,15 @@ source 'http://rubygems.org'
 gem 'puma'
 
 # sinatra dependencies
-gem 'activerecord', '~> 4.1'
+gem 'activerecord', '~> 5.2.1'
 gem 'mysql2'
 gem 'rake', '~> 10.3'
 
-gem 'sinatra', '~> 1.4'
+gem 'sinatra', '~> 2.0.3'
 gem 'sinatra-contrib'
-gem 'sinatra-activerecord', '~> 2.0'
+gem 'sinatra-activerecord', '~> 2.0.13'
 gem 'json'
+gem 'jwt'
 gem 'rack-parser', :require => 'rack/parser'
 gem 'newrelic_rpm'
 
